@@ -38,8 +38,8 @@ try (ZipFile zipFile = new ZipFile(file)) {
 
 ### 修正後（>= 1.26.0）
 ```java
-File file = new File(path.toString());
 // ZipFile(String path) -> ZipFile.builder().setFile(File file).get()
+File file = new File(path.toString());
 try (ZipFile zipFile = ZipFile.builder().setFile(file).get()) {
 ```
 
