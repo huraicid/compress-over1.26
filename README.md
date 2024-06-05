@@ -27,6 +27,25 @@ ZipFile
                 // （org.apache.commons.compress.archivers.zip.ZipFile）
 ```
 
+## コード例
+### 修正前（< 1.26.0）
+```java
+// このZipFile(コンストラクタ)がDeprecatedになった
+File file = new File(path.toString()); 
+try (ZipFile zipFile = new ZipFile(file)) {
+    ...
+```
+
+### 修正後（>= 1.26.0）
+```java
+File file = new File(path.toString());
+// ZipFile(String path) -> ZipFile.builder().setFile(File file).get()
+try (ZipFile zipFile = ZipFile.builder().setFile(file).get()) {
+```
+
+実際に動かせる例は以下のリンクを参照：
+https://github.com/huraicid/compress-over1.26/blob/main/compress-over126/src/main/java/com/example/Main.java
+
 
 ## 参考
 - JavaDoc:
